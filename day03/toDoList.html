@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To Do list</title>
+    <style>
+        button{
+            padding:8px, 20px;
+            font-size: 16;
+        }
+        li button{
+            padding: 8px,12px;
+        }
+    </style>
+    <script>
+        function addElements(){
+            let newItem = document.getElementById("text1").value;
+            let toInsert = document.getElementById("list1");
+
+            if(newItem.trim() !== ""){
+                let listItem = document.createElement("li");
+                listItem.textContent = newItem;
+
+                let deleteButton = document.createElement("button");
+                deleteButton.textContent="delete";
+                deleteButton.onclick = function(){
+                    toInsert.removeChild(listItem);
+                }
+
+                let completeButton = document.createElement("button");
+                completeButton.textContent="completed";
+                completeButton.onclick = function(){
+                    listItem.style.textDecoration="line-through";
+                }
+
+                listItem.appendChild(deleteButton);
+                listItem.appendChild(completeButton);
+
+                toInsert.appendChild(listItem);
+                document.getElementById("text1").value =""
+            } else{
+                alert("Can't be empty");
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>To do List</h1>
+    <input type="text" id="text1">
+    <button onclick="addElements()">Add to list</button>
+    <hr/>
+    <ul id="list1">
+    </ul>
+</body>
+</html>
